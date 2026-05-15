@@ -2504,76 +2504,48 @@ Indicar a melhoria cadastrada para evitar novo tratamento de dados.</pre>
     return cols.map(v => v.replace(/^"|"$/g,'').trim());
   }
 
-  // Separa o campo "Contatos" (ex: "(48) 9999-9999 / email@x.com / www.site.com")
+  // Separa o campo "Contatos"
+  // Suporta dois formatos:
+  //   pipe:  "(fone) | email@x.com | https://site.com"
+  //   barra: "(fone) / email@x.com / www.site.com"
   function splitContatos(str) {
     if (!str) return { tel: '', email: '', site: '' };
-    const parts = str.split(/\s*[\/|]\s*/).map(p => p.trim()).filter(Boolean);
+    // Se contém pipe, usa pipe como separador (preserva barras dentro dos segmentos)
+    // Senão, usa ' / ' com espaços (evita quebrar URLs com /)
+    const parts = str.includes('|')
+      ? str.split('|').map(p => p.trim()).filter(Boolean)
+      : str.split(/\s+\/\s+/).map(p => p.trim()).filter(Boolean);
     let tel = '', email = '', site = '';
     for (const p of parts) {
       const pl = p.toLowerCase();
-      if (!email && p.includes('@')) { email = p; }
-      else if (!site && (pl.startsWith('http') || pl.startsWith('www'))) { site = p; }
-      else if (!tel && /^[\(\+\d\s]/.test(p) && /\d{4}/.test(p)) { tel = p; }
+      if (!email && p.includes('@'))                              { email = p; }
+      else if (!site && (pl.includes('://') || pl.startsWith('www'))) { site = p; }
+      else if (!tel)                                              { tel = p; }
     }
     return { tel, email, site };
   }
 
+  // Colunas fixas do canais.csv:
+  // 0: Área comercial | 1: Municipio | 2: Estado | 3: UF do estado
+  // 4: Equipe comercial | 5: Porte | 6: Contatos
   function parseCanaisCSV(text) {
-    const rawLines = text.split('\n').filter(l => l.trim());
-    // Encontra linha do cabeçalho (pula linhas de aviso do gviz)
-    let startIdx = 0;
-    for (let i = 0; i < Math.min(rawLines.length, 5); i++) {
-      const first = rawLines[i].split(',')[0].replace(/^"|"$/g,'').trim().toLowerCase();
-      if (first && isNaN(first.replace(/[^a-z]/g,'')) && !first.startsWith('date')) {
-        startIdx = i; break;
-      }
-    }
-
-    const headers = parseCSVLine(rawLines[startIdx]).map(h => h.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''));
-    // Busca flexível por substring normalizada
-    const find = (...keys) => {
-      for (const k of keys) {
-        const kn = k.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-        const i = headers.findIndex(h => h.includes(kn));
-        if (i >= 0) return i;
-      }
-      return -1;
-    };
-
-    // Mapeamento para as colunas reais da planilha
-    // Padrão: Área comercial | Municipio | Estado | UF do estado | Equipe comercial | Porte | Contatos
-    canaisColMap = {
-      empresa:  find('area comercial', 'area', 'comercial', 'empresa', 'revend', 'parcei', 'nome'),
-      muni:     find('municipio', 'munic', 'cidade'),
-      estado:   find('estado'),
-      uf:       find('uf do estado', 'uf '),
-      equipe:   find('equipe'),
-      porte:    find('porte', 'tier', 'tamanho'),
-      contatos: find('contatos', 'contato', 'telefone', 'fone', 'email'),
-    };
-
-    // Fallback: se UF não foi encontrado, tenta "uf" simples
-    if (canaisColMap.uf < 0) canaisColMap.uf = find('uf');
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+    if (lines.length < 2) { canaisRows = []; return; }
 
     canaisRows = [];
-    for (let i = startIdx + 1; i < rawLines.length; i++) {
-      const cols = parseCSVLine(rawLines[i]);
-      if (cols.length < 2 || cols.every(c => !c)) continue;
-      const get = idx => (idx >= 0 && idx < cols.length) ? cols[idx] : '';
-
-      const { tel, email, site } = splitContatos(get(canaisColMap.contatos));
-      const row = {
-        empresa:  get(canaisColMap.empresa),
-        muni:     get(canaisColMap.muni),
-        estado:   get(canaisColMap.estado),
-        uf:       get(canaisColMap.uf),
-        equipe:   get(canaisColMap.equipe),
-        porte:    get(canaisColMap.porte),
-        telefone: tel,
-        email:    email,
-        website:  site,
-      };
-      if (row.uf || row.muni || row.empresa) canaisRows.push(row);
+    for (let i = 1; i < lines.length; i++) {          // pula cabeçalho
+      const cols = lines[i].split(',');
+      if (cols.length < 4) continue;
+      const empresa  = cols[0].trim();
+      const muni     = cols[1].trim();
+      const estado   = cols[2].trim();
+      const uf       = cols[3].trim();
+      const equipe   = (cols[4] || '').trim();
+      const porte    = (cols[5] || '').trim();
+      const contatos = cols.slice(6).join(',').trim();  // une colunas restantes por segurança
+      if (!empresa && !muni && !uf) continue;
+      const { tel, email, site } = splitContatos(contatos);
+      canaisRows.push({ empresa, muni, estado, uf, equipe, porte, telefone: tel, email, website: site });
     }
     canaisRows.sort((a, b) => (a.uf + a.muni).localeCompare(b.uf + b.muni, 'pt-BR'));
   }
