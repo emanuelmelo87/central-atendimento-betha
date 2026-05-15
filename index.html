@@ -732,6 +732,365 @@
     }
     .link-card:hover .link-card-arrow { opacity: 1; }
 
+    /* ── BOAS PRÁTICAS PANEL ── */
+    .bp-tabs { display:flex; gap:0; border-bottom: 2px solid var(--gray-border); padding: 0 24px; background:#fff; }
+    .bp-tab {
+      padding: 12px 20px; font-size:13px; font-weight:700;
+      color: var(--text-secondary); cursor:pointer; border-bottom: 2px solid transparent;
+      margin-bottom:-2px; transition: all .15s; white-space:nowrap;
+      display:flex; align-items:center; gap:6px;
+    }
+    .bp-tab:hover { color: var(--blue-primary); }
+    .bp-tab.active { color: var(--blue-primary); border-bottom-color: var(--blue-primary); }
+    .bp-pane { display:none; padding: 24px; }
+    .bp-pane.active { display:block; }
+
+    .bp-section { margin-bottom: 28px; }
+    .bp-section:last-child { margin-bottom:0; }
+    .bp-section-title {
+      font-size:11px; font-weight:800; text-transform:uppercase;
+      letter-spacing:1px; color:var(--text-secondary);
+      margin-bottom:12px; display:flex; align-items:center; gap:8px;
+    }
+    .bp-section-title::after { content:''; flex:1; height:1px; background:var(--gray-border); }
+
+    /* dicas grid */
+    .dicas-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px; }
+    .dica-card {
+      background:#fff; border:1.5px solid var(--gray-border);
+      border-left: 3px solid var(--blue-primary);
+      border-radius:8px; padding:12px 14px;
+      font-size:13px; color:var(--text-primary); line-height:1.6;
+    }
+    .dica-card a { color:var(--blue-mid); }
+    .dica-card strong { color:var(--blue-dark); }
+
+    /* callout boxes */
+    .callout-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; }
+    .callout {
+      border-radius:8px; padding:12px 16px;
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .callout.blue  { background:var(--blue-light);   border:1px solid #C5D8F5; }
+    .callout.green { background:var(--green-light);  border:1px solid #C8E6C9; }
+    .callout.orange{ background:var(--orange-light); border:1px solid #FFD6A5; }
+    .callout-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.6px; opacity:.7; }
+    .callout-value { font-size:15px; font-weight:800; color:var(--text-primary); }
+    .callout-desc  { font-size:11px; color:var(--text-secondary); }
+
+    /* steps */
+    .steps { display:flex; flex-direction:column; gap:8px; }
+    .step { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text-primary); line-height:1.5; }
+    .step-num {
+      min-width:22px; height:22px; border-radius:50%;
+      background:var(--blue-primary); color:#fff;
+      font-size:11px; font-weight:700;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;
+    }
+
+    /* ferramentas */
+    .tools-grid { display:flex; gap:10px; flex-wrap:wrap; }
+    .tool-card {
+      background:#fff; border:1.5px solid var(--gray-border);
+      border-radius:8px; padding:12px 16px;
+      display:flex; align-items:center; gap:10px;
+      font-size:13px;
+    }
+    .tool-icon { font-size:22px; }
+    .tool-name { font-weight:700; color:var(--text-primary); }
+    .tool-type { font-size:11px; color:var(--text-secondary); }
+
+    /* accordion (mensagens/templates) */
+    .accordion { display:flex; flex-direction:column; gap:6px; }
+    .acc-item {
+      border:1.5px solid var(--gray-border); border-radius:8px; overflow:hidden;
+    }
+    .acc-header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 16px; cursor:pointer;
+      background:#fff; transition:background .15s;
+      font-size:13px; font-weight:700; color:var(--text-primary);
+      user-select:none;
+    }
+    .acc-header:hover { background:var(--gray-bg); }
+    .acc-header.open { background:var(--blue-light); color:var(--blue-primary); }
+    .acc-arrow { font-size:11px; transition:transform .2s; }
+    .acc-header.open .acc-arrow { transform:rotate(180deg); }
+    .acc-body {
+      display:none; padding:16px;
+      background:#FAFBFD; border-top:1px solid var(--gray-border);
+    }
+    .acc-body.open { display:block; }
+    .acc-body pre {
+      white-space:pre-wrap; font-family:'Segoe UI',sans-serif;
+      font-size:12.5px; line-height:1.7; color:var(--text-primary);
+      background:#fff; border:1px solid var(--gray-border);
+      border-radius:6px; padding:14px; margin:0;
+    }
+    .btn-copy-msg {
+      margin-top:8px; padding:5px 14px;
+      background:var(--blue-primary); color:#fff;
+      border:none; border-radius:6px; font-size:11px; font-weight:700;
+      cursor:pointer; transition:background .15s;
+    }
+    .btn-copy-msg:hover { background:var(--blue-dark); }
+
+    .bp-doc-link {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:12px; color:var(--blue-mid); text-decoration:none; font-weight:600;
+    }
+    .bp-doc-link:hover { text-decoration:underline; }
+
+    /* ── BTN LIMPAR FILTRO ── */
+    .btn-clear-filter {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border: 1.5px solid #D32F2F;
+      border-radius: 20px;
+      background: #fff;
+      color: #D32F2F;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .btn-clear-filter:hover { background: #FFEBEE; }
+    .btn-clear-filter.visible { display: inline-flex; }
+
+    /* ── CANAIS PANEL ── */
+    .canais-search-area {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--gray-border);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .canais-select {
+      padding: 8px 12px;
+      border: 1.5px solid var(--gray-border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-primary);
+      background: var(--gray-bg);
+      cursor: pointer;
+      outline: none;
+      min-width: 140px;
+      transition: border-color .2s;
+    }
+    .canais-select:focus { border-color: var(--blue-primary); background: #fff; }
+    .canais-body { padding: 20px 24px; }
+    .canais-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .canais-card {
+      background: #fff;
+      border: 1.5px solid var(--gray-border);
+      border-left: 4px solid var(--blue-primary);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .15s;
+    }
+    .canais-card:hover { box-shadow: var(--shadow-md); }
+    .canais-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+    .canais-muni {
+      font-size: 14px; font-weight: 800;
+      color: var(--blue-dark);
+      line-height: 1.2;
+    }
+    .canais-uf-badge {
+      background: var(--blue-primary);
+      color: #fff;
+      font-size: 11px; font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .canais-empresa {
+      font-size: 13px; font-weight: 700;
+      color: var(--text-primary);
+    }
+    .canais-row {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; color: var(--text-secondary);
+    }
+    .canais-row a { color: var(--blue-mid); text-decoration: none; font-weight: 600; }
+    .canais-row a:hover { text-decoration: underline; }
+    .canais-row-icon { font-size: 13px; flex-shrink: 0; }
+    .canais-tag {
+      display: inline-block;
+      background: var(--blue-light); color: var(--blue-dark);
+      font-size: 10px; font-weight: 700;
+      padding: 2px 7px; border-radius: 4px; margin: 1px;
+    }
+    .canais-empty {
+      text-align: center; padding: 48px 24px;
+      color: var(--text-secondary);
+    }
+    .canais-count {
+      font-size: 12px; color: var(--text-secondary);
+      font-weight: 600; padding: 0 0 12px;
+    }
+
+    /* ── AJUDA CARDS ── */
+    .ajuda-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px;
+    }
+    .ajuda-card {
+      background: #fff;
+      border: 1.5px solid var(--gray-border);
+      border-radius: 12px;
+      padding: 20px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+      transition: all .18s ease;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+    .ajuda-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; right: 0;
+      height: 3px;
+      background: var(--ajuda-color, var(--blue-primary));
+      opacity: 0;
+      transition: opacity .18s;
+    }
+    .ajuda-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--ajuda-color, var(--blue-primary));
+    }
+    .ajuda-card:hover::before { opacity: 1; }
+    .ajuda-icon-wrap {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: var(--ajuda-bg, var(--blue-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .ajuda-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ajuda-color, var(--blue-primary));
+      line-height: 1.2;
+    }
+    .ajuda-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      flex: 1;
+      margin-bottom: 4px;
+    }
+    .ajuda-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 6px;
+      padding: 6px 16px;
+      background: var(--ajuda-color, var(--blue-primary));
+      color: #fff;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      width: fit-content;
+      transition: opacity .15s;
+    }
+    .ajuda-card:hover .ajuda-btn { opacity: .88; }
+    .ajuda-featured {
+      background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-mid) 100%);
+      border-color: transparent;
+      color: #fff;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: var(--shadow-md);
+      transition: opacity .18s;
+    }
+    .ajuda-featured:hover { opacity: .92; }
+    .ajuda-featured-icon {
+      font-size: 32px;
+      background: rgba(255,255,255,.15);
+      border-radius: 50%;
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ajuda-featured-text { flex: 1; }
+    .ajuda-featured-title { font-size: 15px; font-weight: 800; color: #fff; }
+    .ajuda-featured-sub { font-size: 12px; color: rgba(255,255,255,.8); margin-top: 2px; }
+    .ajuda-featured-arrow { font-size: 20px; color: rgba(255,255,255,.7); }
+
+    /* ── ANALISTA BAR ── */
+    .analyst-bar {
+      padding: 10px 24px;
+      border-bottom: 1px solid var(--gray-border);
+      background: linear-gradient(to right, #FEF7F0, #FFF9F5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .analyst-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange-dark);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .analyst-bar input {
+      flex: 1;
+      min-width: 180px;
+      max-width: 300px;
+      padding: 7px 12px;
+      border: 1.5px solid #FFB74D;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-primary);
+      background: #fff;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .analyst-bar input:focus {
+      border-color: var(--orange-dark);
+      box-shadow: 0 0 0 3px rgba(245,130,31,.15);
+    }
+    .analyst-hint {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .analyst-hint.visible { opacity: 1; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       header { padding: 0 16px; }
@@ -800,6 +1159,13 @@
       </div>
       <span class="card-badge">Disponível</span>
     </div>
+    <div class="menu-card" onclick="showModule('boas-praticas')">
+      <div class="card-icon green">✅</div>
+      <div>
+        <div class="card-label">Boas Práticas</div>
+      </div>
+      <span class="card-badge">Disponível</span>
+    </div>
   </div>
 
   <!-- PAINEL RAMAIS -->
@@ -835,9 +1201,10 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
-        <input type="text" id="search-input" placeholder="Buscar portfólio, vertical ou ramal…" oninput="renderRamais()" />
+        <input type="text" id="search-input" placeholder="Buscar portfólio, vertical ou ramal…" oninput="onRamaisInput()" />
       </div>
       <div class="filter-chips" id="filter-chips"></div>
+      <button class="btn-clear-filter" id="btn-clear-ramais" onclick="clearRamaisFilter()">✕ Limpar filtro</button>
     </div>
 
     <div class="portfolios-wrap" id="ramais-content">
@@ -899,17 +1266,26 @@
         Abrir em nova aba
       </a>
     </div>
-    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;
-                min-height:340px;padding:48px 24px;text-align:center;gap:20px;">
-      <div style="font-size:52px;opacity:.25">🗺️</div>
-      <div style="font-size:17px;font-weight:700;color:var(--blue-primary);">Em breve!</div>
-      <div style="font-size:14px;color:var(--text-secondary);max-width:420px;line-height:1.7;">
-        Aqui você poderá consultar os contatos dos nossos <strong>parceiros e revendedores por município</strong>,
-        facilitando o direcionamento correto de cada atendimento.
+    <!-- Filtros -->
+    <div class="canais-search-area">
+      <div class="search-box" style="min-width:200px;flex:1;max-width:300px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="canais-search" placeholder="Buscar município, empresa…" oninput="renderCanais()" />
       </div>
-      <div style="background:var(--blue-light);border:1px solid #C5D8F5;border-radius:8px;
-                  padding:10px 20px;font-size:12px;color:var(--blue-dark);font-weight:600;">
-        🔔 Funcionalidade em desenvolvimento
+      <select class="canais-select" id="canais-uf" onchange="onCanaisUF()">
+        <option value="">🗺️ Todos os estados</option>
+      </select>
+      <select class="canais-select" id="canais-muni" onchange="renderCanais()">
+        <option value="">🏙️ Todos os municípios</option>
+      </select>
+      <button class="btn-clear-filter" id="btn-clear-canais" onclick="clearCanaisFilter()">✕ Limpar filtro</button>
+    </div>
+    <!-- Conteúdo -->
+    <div class="canais-body">
+      <div id="canais-content">
+        <div class="loading-wrap"><div class="spinner"></div><div>Carregando contatos…</div></div>
       </div>
     </div>
   </div>
@@ -974,7 +1350,7 @@
       <div class="links-group">
         <div class="links-group-title">🖥️ Sistemas Betha</div>
         <div class="links-grid">
-          <a class="link-card" href="https://cloud.betha.com.br/" target="_blank"
+          <a class="link-card" href="https://betha.cloud/#/entidades" target="_blank"
              style="--lc-color:#003F8A;--lc-bg:#E6EEF9">
             <div class="link-card-icon">☁️</div>
             <div class="link-card-info">
@@ -1001,15 +1377,123 @@
             </div>
             <span class="link-card-arrow">↗</span>
           </a>
-          <a class="link-card" href="https://ajuda.betha.cloud/" target="_blank"
-             style="--lc-color:#2E7D32;--lc-bg:#E8F5E9">
-            <div class="link-card-icon">❓</div>
+          <a class="link-card" href="https://admin.betha.com.br/cad_usuarios_tecnicos_revenda.faces" target="_blank"
+             style="--lc-color:#D32F2F;--lc-bg:#FFEBEE">
+            <div class="link-card-icon">👤</div>
             <div class="link-card-info">
-              <div class="link-card-name">Central de Ajuda</div>
-              <div class="link-card-desc">Ajuda a usuários da Betha</div>
+              <div class="link-card-name">Cadastro Usuários Técnicos</div>
+              <div class="link-card-desc">Usuários técnicos por revenda</div>
             </div>
             <span class="link-card-arrow">↗</span>
           </a>
+        </div>
+      </div>
+
+      <!-- GRUPO: AJUDA -->
+      <div class="links-group">
+        <div class="links-group-title">📚 Central de Ajuda — Por Vertical</div>
+
+        <!-- Card destaque: portal geral -->
+        <a class="ajuda-featured" href="https://ajuda.betha.cloud/" target="_blank">
+          <div class="ajuda-featured-icon">❓</div>
+          <div class="ajuda-featured-text">
+            <div class="ajuda-featured-title">Central de Ajuda Betha</div>
+            <div class="ajuda-featured-sub">Portal geral — acesse a documentação de todos os módulos e novidades</div>
+          </div>
+          <span class="ajuda-featured-arrow">↗</span>
+        </a>
+
+        <!-- Grid de cards por vertical -->
+        <div class="ajuda-grid">
+
+          <a class="ajuda-card" href="https://arrecadacao.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#3E8E41;--ajuda-bg:#E8F5E9">
+            <div class="ajuda-icon-wrap">💰</div>
+            <div class="ajuda-name">Arrecadação</div>
+            <div class="ajuda-desc">Sistemas que potencializam a arrecadação e gestão tributária do município.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://beth.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#616161;--ajuda-bg:#F5F5F5">
+            <div class="ajuda-icon-wrap">🤝</div>
+            <div class="ajuda-name">Beth</div>
+            <div class="ajuda-desc">Sistemas que otimizam o atendimento e a comunicação com o cidadão.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://contabil.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#1976D2;--ajuda-bg:#E3F2FD">
+            <div class="ajuda-icon-wrap">📊</div>
+            <div class="ajuda-name">Contábil</div>
+            <div class="ajuda-desc">Soluções contábeis para facilitar prestação de contas e gestão financeira.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://contratos.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#E64A19;--ajuda-bg:#FBE9E7">
+            <div class="ajuda-icon-wrap">📄</div>
+            <div class="ajuda-name">Contratos</div>
+            <div class="ajuda-desc">Documentação para organização e gestão da administração municipal.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://educacao.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#F57C00;--ajuda-bg:#FFF3E0">
+            <div class="ajuda-icon-wrap">🎓</div>
+            <div class="ajuda-name">Educação</div>
+            <div class="ajuda-desc">Sistemas que apoiam a gestão escolar do município — alunos, professores e transporte.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://governodigital.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#1A237E;--ajuda-bg:#E8EAF6">
+            <div class="ajuda-icon-wrap">🏛️</div>
+            <div class="ajuda-name">Governo Digital</div>
+            <div class="ajuda-desc">Ferramentas para sustentabilidade, redução de gastos e transparência pública.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://iss.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#00695C;--ajuda-bg:#E0F2F1">
+            <div class="ajuda-icon-wrap">🏢</div>
+            <div class="ajuda-name">ISS</div>
+            <div class="ajuda-desc">Sistemas que automatizam a gestão e fiscalização do ISS no município.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://pessoal.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#1565C0;--ajuda-bg:#E3F2FD">
+            <div class="ajuda-icon-wrap">👥</div>
+            <div class="ajuda-name">Pessoal</div>
+            <div class="ajuda-desc">Gestão de pessoas — folha, RH, ponto, eSocial e Minha Folha.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://saude.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#2E7D32;--ajuda-bg:#E8F5E9">
+            <div class="ajuda-icon-wrap">🏥</div>
+            <div class="ajuda-name">Saúde</div>
+            <div class="ajuda-desc">Sistemas que auxiliam e simplificam a gestão da saúde dos municípios.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://studio.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#4527A0;--ajuda-bg:#EDE7F6">
+            <div class="ajuda-icon-wrap">🎨</div>
+            <div class="ajuda-name">Studio</div>
+            <div class="ajuda-desc">Documentação e recursos do Betha Studio para personalização e desenvolvimento.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
+          <a class="ajuda-card" href="https://suite.ajuda.betha.cloud/" target="_blank"
+             style="--ajuda-color:#00838F;--ajuda-bg:#E0F7FA">
+            <div class="ajuda-icon-wrap">🧩</div>
+            <div class="ajuda-name">Suite</div>
+            <div class="ajuda-desc">Documentação completa da Suite Betha — plataforma integrada de gestão pública.</div>
+            <span class="ajuda-btn">Conferir ↗</span>
+          </a>
+
         </div>
       </div>
 
@@ -1067,6 +1551,436 @@
 
     </div>
   </div>
+
+  <!-- PAINEL BOAS PRÁTICAS -->
+<div id="panel-boas-praticas" class="panel" style="display:none">
+  <div class="panel-header">
+    <div class="panel-header-left">
+      <div class="panel-icon">✅</div>
+      <div>
+        <div class="panel-title">Boas Práticas de Atendimento</div>
+        <div class="panel-subtitle">Procedimentos, mensagens padrão e templates</div>
+      </div>
+    </div>
+    <a href="https://docs.google.com/document/d/1WKUOJBzYoBFQPUirNLDChWLXYf2XonYDWyoE5IqyHKM/edit" target="_blank" class="btn-open-external">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+      Documento original
+    </a>
+  </div>
+
+  <!-- NOME DO ANALISTA -->
+  <div class="analyst-bar">
+    <span class="analyst-label">👤 Seu nome:</span>
+    <input id="analyst-name" type="text" placeholder="Digite seu nome… (será inserido automaticamente nas mensagens)" oninput="saveAnalystName()" />
+    <span class="analyst-hint" id="analyst-hint">✓ Salvo</span>
+  </div>
+
+  <!-- BUSCA -->
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="bp-search" placeholder="Buscar dicas, mensagens, templates…" oninput="bpSearchInput()" />
+    </div>
+    <button class="btn-clear-filter" id="btn-clear-bp" onclick="clearBpFilter()">✕ Limpar filtro</button>
+    <div class="filter-chips" id="bp-filter-chips">
+      <span class="chip" onclick="bpChip('encerramento')">Encerramento</span>
+      <span class="chip" onclick="bpChip('incidente')">Incidente</span>
+      <span class="chip" onclick="bpChip('chat')">Chat/WhatsApp</span>
+      <span class="chip" onclick="bpChip('melhoria')">Melhoria</span>
+      <span class="chip" onclick="bpChip('triagem')">Triagem</span>
+      <span class="chip" onclick="bpChip('prazo')">Prazo</span>
+      <span class="chip" onclick="bpChip('portal')">Portal</span>
+    </div>
+  </div>
+
+  <!-- ABAS -->
+  <div class="bp-tabs" id="bp-tabs-bar">
+    <div class="bp-tab active" onclick="bpTab('msgs',this)">📋 Mensagens Padrão</div>
+    <div class="bp-tab" onclick="bpTab('tmpl',this)">📝 Templates</div>
+    <div class="bp-tab" onclick="bpTab('proc',this)">💡 Procedimentos</div>
+  </div>
+
+  <!-- ABA PROCEDIMENTOS (última) -->
+  <div id="bp-proc" class="bp-pane">
+
+    <div class="bp-section">
+      <div class="bp-section-title">💡 Dicas Gerais</div>
+      <div class="dicas-grid">
+        <div class="dica-card">📅 Quando o cliente questionar <strong>prazo de incidente</strong>, repasse o SLO do desenvolvimento. Se já estourado, informe que acionará o responsável e registre comentário público + interno ao gestor.</div>
+        <div class="dica-card">⏸ Ao sanar <strong>mais de uma dúvida</strong> na ligação, registre chamados distintos. Se precisar de tempo para registrá-los, coloque-se <strong>Em Pausa</strong> na fila para não receber novas ligações.</div>
+        <div class="dica-card">💬 Sem ligações? Continue os atendimentos registrados via <strong>Portal de Atendimento</strong>.</div>
+        <div class="dica-card">🧪 Utilize sempre <strong>ambientes de teste</strong> para simulação — nunca a base oficial do cliente.</div>
+        <div class="dica-card">🗣️ Se não souber a resposta, não diga <em>"Sou novo"</em> ou <em>"Não sei"</em>. Diga: <strong>"Vou verificar e retorno em um ou dois minutos. Consegue aguardar?"</strong></div>
+        <div class="dica-card">🔍 Para incidentes de instabilidade no <strong>Cloud/Fly</strong>, consulte <a href="https://status.betha.cloud/" target="_blank">status.betha.cloud</a> e use como evidência.</div>
+      </div>
+    </div>
+
+    <div class="bp-section">
+      <div class="bp-section-title">🔍 Consultar Dados do Cliente</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div>Acessar o <strong>ambiente de atendimento</strong> (Jira)</div>
+        <div class="step"><div class="step-num">2</div>Menu principal → <strong>Utilitários → Gerenciamento de usuários</strong></div>
+        <div class="step"><div class="step-num">3</div>Pesquisar por usuário, nome completo ou e-mail (mínimo 3 caracteres). Também é possível buscar por <strong>entidade</strong>.</div>
+        <div class="step"><div class="step-num">4</div>Clicar no <strong>ícone grupos</strong> para ver grupos e entidades vinculadas ao cliente.</div>
+        <div class="step"><div class="step-num">5</div>Para alterar o e-mail do Portal: usar botão de <strong>Edição</strong> na mesma tela.</div>
+      </div>
+    </div>
+
+    <div class="bp-section">
+      <div class="bp-section-title">📞 Transferências — Financeiro & Senhas</div>
+      <div class="callout-grid">
+        <div class="callout blue">
+          <div class="callout-label">📱 WhatsApp / 0800</div>
+          <div class="callout-value">0800 600 0735</div>
+          <div class="callout-desc">Opção <strong>10</strong> — Senhas periódicas e Financeiro/Inadimplência</div>
+        </div>
+        <div class="callout green">
+          <div class="callout-label">📧 E-mail Comercial</div>
+          <div class="callout-value">comercial@betha.com.br</div>
+          <div class="callout-desc">Contratos, licença vencida, assuntos financeiros</div>
+        </div>
+        <div class="callout orange">
+          <div class="callout-label">☎️ Telefone Comercial</div>
+          <div class="callout-value">48 3431-0733</div>
+          <div class="callout-desc">Contratos, licença vencida, assuntos financeiros</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bp-section">
+      <div class="bp-section-title">💬 Chat / Blip — Pontos importantes</div>
+      <div class="dicas-grid">
+        <div class="dica-card">📝 Para cada situação tratada no chat/WhatsApp, registrar um chamado no JIRA. Campo <strong>"Origem da Solicitação"</strong> = <strong>Chat/Whatsapp</strong>.</div>
+        <div class="dica-card">🔗 Acesso Blip: <a href="https://bethasistemas.desk.blip.ai/" target="_blank">bethasistemas.desk.blip.ai</a> — Usuário e senha individuais. Clicar em <strong>Ficar Online</strong> para receber atendimentos.</div>
+        <div class="dica-card">⚠️ Comentários no contato <strong>ficam vinculados e não permitem edição/exclusão</strong> — use apenas para informações fixas do usuário.</div>
+        <div class="dica-card">⌨️ Use a tecla <strong>#</strong> para consultar mensagens pré-definidas durante o atendimento.</div>
+        <div class="dica-card">✏️ Para corrigir dados do cliente (cadastro incorreto): <a href="https://bethasistemas.blip.ai/application/detail/bethasistemas1/users" target="_blank">bethasistemas.blip.ai → usuários</a></div>
+      </div>
+    </div>
+
+    <div class="bp-section">
+      <div class="bp-section-title">🔀 Triagem → Atendimento (envio de chamados)</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div>Registrar todas as <strong>informações coletadas e análises já realizadas</strong>.</div>
+        <div class="step"><div class="step-num">2</div>Chamados <strong>Cloud</strong>: verificar e garantir que o <strong>acesso técnico esteja liberado</strong>.</div>
+        <div class="step"><div class="step-num">3</div>Chamados <strong>Desktop</strong>: se foi enviada base, iniciar o download e <strong>informar o caminho da base</strong>. Verificar se não está corrompida antes de concluir.</div>
+      </div>
+    </div>
+
+    <div class="bp-section">
+      <div class="bp-section-title">🛠️ Ferramentas para Evidências</div>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://app.prntscr.com/pt-br/download.html" target="_blank" style="text-decoration:none;color:inherit;">
+          <div class="tool-icon">📸</div>
+          <div>
+            <div class="tool-name">Lightshot</div>
+            <div class="tool-type">Captura de imagem · Baixar ↗</div>
+          </div>
+        </a>
+        <a class="tool-card" href="https://flameshot.org/docs/installation/installation-windows/" target="_blank" style="text-decoration:none;color:inherit;">
+          <div class="tool-icon">🔥</div>
+          <div>
+            <div class="tool-name">Flameshot</div>
+            <div class="tool-type">Captura de imagem (avançado) · Baixar ↗</div>
+          </div>
+        </a>
+        <a class="tool-card" href="https://www.loom.com/download" target="_blank" style="text-decoration:none;color:inherit;">
+          <div class="tool-icon">🎥</div>
+          <div>
+            <div class="tool-name">Loom</div>
+            <div class="tool-type">Captura de vídeo · Baixar ↗</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ABA MENSAGENS PADRÃO (padrão ativa) -->
+  <div id="bp-msgs" class="bp-pane active">
+    <div class="accordion">
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">📩 Encerramento de chamado <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-encerramento">Olá, @solicitante.
+
+Conforme contato telefônico [informar a solução repassada ao cliente], considerando que atendeu a sua necessidade, estou finalizando o seu atendimento.
+
+Se precisar de um novo auxílio, estamos à sua disposição!
+
+*Nome do analista*
+Atendimento Betha
+Seu feedback é muito importante para nós!
+Participe da nossa Pesquisa de Satisfação.</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-encerramento')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">🎄 Encerramento — Final de ano (com orientação) <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-recesso1">Olá, @solicitante.
+
+Realizei contato telefônico e fui informado que vocês estão em recesso. Com isso, detalho abaixo a orientação para seu questionamento, com base nas informações descritas inicialmente: [informar a solução repassada ao cliente],
+
+Com isso estou finalizando o seu atendimento. Caso haja alguma pendência e/ou novo auxílio, favor registrar um novo chamado em seu retorno.
+
+Se precisar de um novo auxílio, estamos à sua disposição!
+
+*Nome do analista*
+Atendimento Betha
+Seu feedback é muito importante para nós!
+Participe da nossa Pesquisa de Satisfação.</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-recesso1')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">🎄 Encerramento — Final de ano (sem orientação) <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-recesso2">Olá, @solicitante.
+
+Realizei contato telefônico e fui informado que vocês estão em recesso. As informações do chamado não são suficientes para repassarmos uma orientação prévia.
+Com isso estou finalizando o seu atendimento. Caso ainda haja necessidade, favor registrar um novo chamado em seu retorno.
+
+*Nome do analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-recesso2')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">✅ Confirmação de recebimento <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-recebimento">Olá,
+Seu chamado foi recebido, assim que possível analisaremos a sua necessidade e voltamos a fazer contato.
+
+Até logo!
+
+*Nome do analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-recebimento')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">📵 Tentativa de contato sem sucesso <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-semcontato">Olá, @solicitante
+
+Preciso confirmar algumas informações com você, para dar continuidade no atendimento do seu chamado.
+
+Liguei no telefone XX XXX-XXX mas não obtive sucesso, existe outro número que eu possa entrar em contato? Ou você prefere que eu faça o contato em outro horário?
+Se desejar, quando estiver disponível, ligue para o 0800 600 0735 e utilize a opção <X> e informe o número deste chamado.
+
+Fico no seu aguardo.
+Até logo!
+
+*Nome do analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-semcontato')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">❓ Questionamento via portal <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-questportal">Olá, @solicitante
+
+Preciso confirmar algumas informações com você, para dar continuidade no atendimento do seu chamado.
+
+[Incluir os itens que precisam ser alinhados/questionados]
+
+Fico no seu aguardo.
+
+Até logo!
+*Nome do analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-questportal')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">📧 Encerramento via portal <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-encerraportal">Olá, @solicitante.
+
+Para atender a sua necessidade é necessário realizar [detalhar a solução].
+
+Com as orientações repassadas, estou finalizando o seu atendimento.
+Se precisar de um novo auxílio, estamos à sua disposição!
+
+*Nome do Analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-encerraportal')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">⏳ Aguardando aprovação <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-aprovacao">Com as orientações repassadas, estou aguardando a sua aprovação. Caso não haja um retorno em até 7 dias, o chamado será finalizado.
+
+*Nome do Analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-aprovacao')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">🔧 Envio para serviços <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-servicos">Olá, @solicitante.
+
+Conforme conversamos, a necessidade apresentada é de [descrever necessidade do cliente].
+
+Para realizá-la você tem as seguintes alternativas disponíveis no sistema:
+1 -
+2-
+
+Porém [você deseja / é necessário] uma customização específica e/ou acompanhamento técnico, e com isso estou direcionando o chamado para que possamos atuar nessa necessidade. Assim que possível retornaremos o contato.
+
+*Nome do Analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-servicos')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">💡 Envio de melhoria <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-melhoria">Olá, @solicitante
+
+Estou encaminhando sua sugestão de Melhoria para análise. Assim que possível, voltamos a entrar em contato com você.
+
+*Nome do Analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-melhoria')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">🐛 Envio de incidente <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-incidente">Olá, @solicitante
+
+Estou encaminhando seu chamado para que possamos atuar na necessidade apresentada neste atendimento. Assim que a atuação for concluída, você será informado por meio de uma notificação neste chamado.
+
+Até logo!
+*Nome do Analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-incidente')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">⏰ Questionamento sobre prazo de incidente <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="msg-prazo">Olá, @solicitante
+
+Seu chamado já está sendo verificado pela equipe responsável. Estou solicitando urgência ao atendimento. Assim que for concluído, você será informado por meio de uma notificação neste chamado.
+
+Até logo!
+*Nome do Analista*
+Atendimento Betha</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('msg-prazo')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ABA TEMPLATES -->
+  <div id="bp-tmpl" class="bp-pane">
+    <div class="accordion">
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">🐛 Template — Incidente para o desenvolvimento <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="tmpl-incidente">*1 - Descrição*
+Descrever brevemente a inconsistência relatada pelo cliente e se possível informar o impacto/bloqueio que a inconsistência está gerando ao cliente.
+
+*2 - Cliente*
+Entidade utilizada na simulação.
+
+*3 - Funcionalidade*
+Funcionalidade X
+
+*4 - Versão do sistema*
+Versão X.X.X
+
+*5 - Base de dados*
+Caminho na rede onde consta a base de dados, somente se necessário.
+
+*6 - Token de conversão Cloud*
+Disponibilizar o token de conversão Cloud, somente se necessário. (Token obrigatório para chamados de migração Cloud).
+
+*7 - Acesso na entidade Cloud para o usuário*
+Habilitar o parâmetro "Acesso técnico".
+
+*8 - Passos para simulação e Evidências*
+
+*8.1. Passos para simulação*
+Informar os passos que foram utilizados no Ambiente de homologação/testes para constatar que o problema ocorre. Exemplo:
+- Acessar a tela X;
+- Campo X: Teste;
+
+*8.2 Evidências*
+A evidência é o que ocorre de fato no cliente. Informar como chegou à constatação de que a situação é uma inconsistência: Prints, consultas SQL's, logs do sistema (Ambiente de produção).
+
+Quando conversão:
+- Enviar o arqjoblet que está ocasionando o incidente;
+- Informar os nomes e os registros das tabelas de migração com erros;
+- Informar a consulta do arqjoblet que alimenta as tabelas de migração com a inconsistência.
+
+*9 - Necessidade*
+Relatar o que necessita ser ajustado. Para Incidentes que geraram erro em dados, informar também a necessidade de correção dos dados do cliente.</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('tmpl-incidente')">📋 Copiar template</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">💡 Template — Melhoria <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="tmpl-melhoria">1 - Funcionalidade:
+
+2 - Necessidade:
+2.1 - Descrever como é executado o processo envolvido na sugestão de melhoria.
+2.2 - Descreva as mudanças que deverão ser feitas no sistema para contemplar a melhoria sugerida.
+
+3 - Indicação de forma paliativa para resolução:
+
+4 - Sugestão de formato para implementação:
+
+5 - Quando se tratar de Atualização de legislação, informar a Legislação, Data de publicação e Data limite.</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('tmpl-melhoria')">📋 Copiar template</button>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="accToggle(this)">🗄️ Template — Tratamento de dados <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <pre id="tmpl-dados">1 - Entidade:
+
+2 - Necessidade:
+
+3 - Dados a serem alterados:
+
+Indicar a melhoria cadastrada para evitar novo tratamento de dados.</pre>
+          <button class="btn-copy-msg" onclick="copyMsg('tmpl-dados')">📋 Copiar template</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 
 </main>
 
@@ -1144,15 +2058,17 @@
 
 <script>
   // ─── CONFIG ───────────────────────────────────────────────────────────────
-  // URL pública (Publicar na Web) — funciona sem login para toda a equipe
-  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-RhpGhqX-SNgGM165RTEzK9CIqmlgeTUzDdPKjP-BYN3vGPOUI9vv_FwSE_5_SYbPIDv-k8nkY-Ip/pub?output=csv&gid=248829263';
+  const SHEETS_PUB = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-RhpGhqX-SNgGM165RTEzK9CIqmlgeTUzDdPKjP-BYN3vGPOUI9vv_FwSE_5_SYbPIDv-k8nkY-Ip/pub';
+  const CSV_URL    = SHEETS_PUB + '?output=csv&gid=248829263';
 
   // ─── STATE ────────────────────────────────────────────────────────────────
-  let allRows     = [];       // [{portfolio, vertical, fila, ramal}]
+  let allRows      = [];   // ramais
   let activeFilter = 'Todos';
+  let canaisRows   = [];   // contatos por município
+  let canaisColMap = {};   // mapeamento de índices de colunas
 
   // ─── MODULE SWITCH ────────────────────────────────────────────────────────
-  const MODULES = ['ramais','clientes','canais','links'];
+  const MODULES = ['ramais','clientes','canais','links','boas-praticas'];
   function showModule(id) {
     MODULES.forEach(m => {
       document.getElementById(`panel-${m}`).style.display = (m === id) ? '' : 'none';
@@ -1160,6 +2076,8 @@
     document.querySelectorAll('.menu-card').forEach((c, i) => {
       c.classList.toggle('active', MODULES[i] === id);
     });
+    // Carrega canais na primeira visita
+    if (id === 'canais' && canaisRows.length === 0) loadCanaisData();
   }
 
   // ─── DATA LOAD ────────────────────────────────────────────────────────────
@@ -1270,6 +2188,30 @@
     activeFilter = v;
     renderFilters();
     renderRamais();
+    updateRamaisClearBtn();
+  }
+
+  // ─── RAMAIS INPUT HANDLER ─────────────────────────────────────────────────
+  function onRamaisInput() {
+    renderRamais();
+    updateRamaisClearBtn();
+  }
+
+  function updateRamaisClearBtn() {
+    const q = (document.getElementById('search-input')?.value || '').trim();
+    const hasFilter = q || activeFilter !== 'Todos';
+    const btn = document.getElementById('btn-clear-ramais');
+    if (btn) btn.classList.toggle('visible', hasFilter);
+  }
+
+  function clearRamaisFilter() {
+    const inp = document.getElementById('search-input');
+    if (inp) inp.value = '';
+    activeFilter = 'Todos';
+    renderFilters();
+    renderRamais();
+    const btn = document.getElementById('btn-clear-ramais');
+    if (btn) btn.classList.remove('visible');
   }
 
   // ─── RENDER RAMAIS ────────────────────────────────────────────────────────
@@ -1406,8 +2348,512 @@
       </div>`;
   }
 
+  // ─── BOAS PRÁTICAS: ABAS ─────────────────────────────────────────────────
+  function bpTab(id, el) {
+    document.querySelectorAll('.bp-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.bp-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('bp-' + id).classList.add('active');
+    el.classList.add('active');
+    // limpa busca e chips ao trocar aba manualmente
+    const inp = document.getElementById('bp-search');
+    if (inp) { inp.value = ''; bpSearchReset(); }
+    document.querySelectorAll('#bp-filter-chips .chip').forEach(c => c.classList.remove('active'));
+  }
+
+  // ─── BOAS PRÁTICAS: BUSCA ────────────────────────────────────────────────
+  // Chamado pelo oninput manual (limpa chips se usuário está digitando livremente)
+  function bpSearchInput() {
+    const q = document.getElementById('bp-search').value.trim().toLowerCase();
+    const matched = [...document.querySelectorAll('#bp-filter-chips .chip')]
+      .some(c => c.getAttribute('onclick') === `bpChip('${q}')`);
+    if (!matched) {
+      document.querySelectorAll('#bp-filter-chips .chip').forEach(c => c.classList.remove('active'));
+    }
+    bpSearch();
+    updateBpClearBtn();
+  }
+
+  function bpSearch() {
+    const q = document.getElementById('bp-search').value.toLowerCase().trim();
+    if (!q) { bpSearchReset(); return; }
+
+    // Oculta abas e mostra painel de resultados único
+    document.getElementById('bp-tabs-bar').style.display = 'none';
+    document.querySelectorAll('.bp-pane').forEach(p => p.classList.remove('active'));
+
+    // Cria/limpa painel de resultados
+    let res = document.getElementById('bp-results');
+    if (!res) {
+      res = document.createElement('div');
+      res.id = 'bp-results';
+      res.className = 'bp-pane active';
+      document.getElementById('panel-boas-praticas').appendChild(res);
+    }
+    res.classList.add('active');
+
+    // Coleta todos os textos buscáveis
+    const results = [];
+
+    // Dica cards
+    document.querySelectorAll('#bp-proc .dica-card').forEach(el => {
+      if (el.innerText.toLowerCase().includes(q)) results.push(el.outerHTML);
+    });
+    // Callouts
+    document.querySelectorAll('#bp-proc .callout').forEach(el => {
+      if (el.innerText.toLowerCase().includes(q)) results.push(el.outerHTML);
+    });
+    // Steps
+    document.querySelectorAll('#bp-proc .step').forEach(el => {
+      if (el.innerText.toLowerCase().includes(q)) results.push(`<div class="dica-card">${el.innerHTML}</div>`);
+    });
+    // Tool cards
+    document.querySelectorAll('#bp-proc .tool-card, #bp-proc a.tool-card').forEach(el => {
+      if (el.innerText.toLowerCase().includes(q)) results.push(el.outerHTML.replace(/tool-card/g,'tool-card'));
+    });
+    // Accordion items (msgs + templates)
+    document.querySelectorAll('#bp-msgs .acc-item, #bp-tmpl .acc-item').forEach(el => {
+      if (el.innerText.toLowerCase().includes(q)) {
+        const clone = el.cloneNode(true);
+        clone.querySelector('.acc-body').classList.add('open');
+        clone.querySelector('.acc-header').classList.add('open');
+        clone.querySelector('.acc-arrow').style.transform = 'rotate(180deg)';
+        results.push(clone.outerHTML);
+      }
+    });
+
+    if (results.length === 0) {
+      res.innerHTML = `<div style="padding:48px;text-align:center;color:var(--text-secondary)">
+        <div style="font-size:36px;opacity:.3;margin-bottom:12px">🔍</div>
+        <div style="font-weight:700;margin-bottom:4px">Nenhum resultado encontrado</div>
+        <div style="font-size:13px">Tente outros termos</div>
+      </div>`;
+    } else {
+      res.innerHTML = `<div style="padding:20px 24px">
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:16px;font-weight:600">${results.length} resultado(s) para "<strong>${q}</strong>"</div>
+        <div class="dicas-grid">${results.join('')}</div>
+      </div>`;
+    }
+  }
+
+  function bpSearchReset() {
+    document.getElementById('bp-tabs-bar').style.display = '';
+    const res = document.getElementById('bp-results');
+    if (res) { res.classList.remove('active'); res.innerHTML = ''; }
+    // desativa chips de filtro
+    document.querySelectorAll('#bp-filter-chips .chip').forEach(c => c.classList.remove('active'));
+    // volta para aba ativa
+    const active = document.querySelector('.bp-tab.active');
+    if (active) {
+      const id = active.getAttribute('onclick').match(/'([^']+)'/)[1];
+      document.getElementById('bp-' + id).classList.add('active');
+    } else {
+      document.getElementById('bp-msgs').classList.add('active');
+    }
+  }
+
+  // ─── ACCORDION ────────────────────────────────────────────────────────────
+  function accToggle(header) {
+    const body = header.nextElementSibling;
+    const isOpen = header.classList.contains('open');
+    header.classList.toggle('open', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  }
+
+  // ─── LIMPAR FILTRO BOAS PRÁTICAS ─────────────────────────────────────────
+  function clearBpFilter() {
+    const inp = document.getElementById('bp-search');
+    if (inp) inp.value = '';
+    document.querySelectorAll('#bp-filter-chips .chip').forEach(c => c.classList.remove('active'));
+    bpSearchReset();
+    const btn = document.getElementById('btn-clear-bp');
+    if (btn) btn.classList.remove('visible');
+  }
+
+  function updateBpClearBtn() {
+    const q = (document.getElementById('bp-search')?.value || '').trim();
+    const hasChip = [...document.querySelectorAll('#bp-filter-chips .chip')].some(c => c.classList.contains('active'));
+    const btn = document.getElementById('btn-clear-bp');
+    if (btn) btn.classList.toggle('visible', !!(q || hasChip));
+  }
+
+  // ─── CANAIS DE ATENDIMENTO ────────────────────────────────────────────────
+  // Planilha pública separada (sem restrição de domínio)
+  const CANAIS_PUB = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRQCwZrfMFYPLP96kjKUH9C5GdsVFUqO5iCyzG8RY2vXyNA3idZOZQjnY1sia-OSKGZs1DpneEy0_fG/pub';
+
+  function buildCanaisUrls() {
+    return [
+      // 1. CSV da planilha pública (aba padrão — funciona sem gid)
+      `${CANAIS_PUB}?output=csv`,
+      // 2. Com gid=0 (primeira aba explicitamente)
+      `${CANAIS_PUB}?output=csv&gid=0`,
+    ];
+  }
+
+  function parseCSVLine(line) {
+    const cols = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"') { inQ = !inQ; }
+      else if (c === ',' && !inQ) { cols.push(cur); cur = ''; }
+      else { cur += c; }
+    }
+    cols.push(cur);
+    return cols.map(v => v.replace(/^"|"$/g,'').trim());
+  }
+
+  // Separa o campo "Contatos" (ex: "(48) 9999-9999 / email@x.com / www.site.com")
+  function splitContatos(str) {
+    if (!str) return { tel: '', email: '', site: '' };
+    const parts = str.split(/\s*[\/|]\s*/).map(p => p.trim()).filter(Boolean);
+    let tel = '', email = '', site = '';
+    for (const p of parts) {
+      const pl = p.toLowerCase();
+      if (!email && p.includes('@')) { email = p; }
+      else if (!site && (pl.startsWith('http') || pl.startsWith('www'))) { site = p; }
+      else if (!tel && /^[\(\+\d\s]/.test(p) && /\d{4}/.test(p)) { tel = p; }
+    }
+    return { tel, email, site };
+  }
+
+  function parseCanaisCSV(text) {
+    const rawLines = text.split('\n').filter(l => l.trim());
+    // Encontra linha do cabeçalho (pula linhas de aviso do gviz)
+    let startIdx = 0;
+    for (let i = 0; i < Math.min(rawLines.length, 5); i++) {
+      const first = rawLines[i].split(',')[0].replace(/^"|"$/g,'').trim().toLowerCase();
+      if (first && isNaN(first.replace(/[^a-z]/g,'')) && !first.startsWith('date')) {
+        startIdx = i; break;
+      }
+    }
+
+    const headers = parseCSVLine(rawLines[startIdx]).map(h => h.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''));
+    // Busca flexível por substring normalizada
+    const find = (...keys) => {
+      for (const k of keys) {
+        const kn = k.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+        const i = headers.findIndex(h => h.includes(kn));
+        if (i >= 0) return i;
+      }
+      return -1;
+    };
+
+    // Mapeamento para as colunas reais da planilha
+    // Padrão: Área comercial | Municipio | Estado | UF do estado | Equipe comercial | Porte | Contatos
+    canaisColMap = {
+      empresa:  find('area comercial', 'area', 'comercial', 'empresa', 'revend', 'parcei', 'nome'),
+      muni:     find('municipio', 'munic', 'cidade'),
+      estado:   find('estado'),
+      uf:       find('uf do estado', 'uf '),
+      equipe:   find('equipe'),
+      porte:    find('porte', 'tier', 'tamanho'),
+      contatos: find('contatos', 'contato', 'telefone', 'fone', 'email'),
+    };
+
+    // Fallback: se UF não foi encontrado, tenta "uf" simples
+    if (canaisColMap.uf < 0) canaisColMap.uf = find('uf');
+
+    canaisRows = [];
+    for (let i = startIdx + 1; i < rawLines.length; i++) {
+      const cols = parseCSVLine(rawLines[i]);
+      if (cols.length < 2 || cols.every(c => !c)) continue;
+      const get = idx => (idx >= 0 && idx < cols.length) ? cols[idx] : '';
+
+      const { tel, email, site } = splitContatos(get(canaisColMap.contatos));
+      const row = {
+        empresa:  get(canaisColMap.empresa),
+        muni:     get(canaisColMap.muni),
+        estado:   get(canaisColMap.estado),
+        uf:       get(canaisColMap.uf),
+        equipe:   get(canaisColMap.equipe),
+        porte:    get(canaisColMap.porte),
+        telefone: tel,
+        email:    email,
+        website:  site,
+      };
+      if (row.uf || row.muni || row.empresa) canaisRows.push(row);
+    }
+    canaisRows.sort((a, b) => (a.uf + a.muni).localeCompare(b.uf + b.muni, 'pt-BR'));
+  }
+
+  async function loadCanaisData() {
+    document.getElementById('canais-content').innerHTML =
+      '<div class="loading-wrap"><div class="spinner"></div><div>Carregando contatos…</div></div>';
+
+    let csvText = null;
+    let lastError = '';
+    let lastStatus = '';
+    const urls = buildCanaisUrls();
+
+    for (const url of urls) {
+      try {
+        const res = await fetch(url);
+        lastStatus = res.status;
+        if (!res.ok) { lastError = `HTTP ${res.status} em ${url}`; continue; }
+        const text = await res.text();
+        // Descarta HTML (página de erro ou login do Google)
+        if (!text) { lastError = 'Resposta vazia'; continue; }
+        if (text.trimStart().startsWith('<')) { lastError = 'Retornou HTML (possível restrição de acesso)'; continue; }
+        // Aceita mesmo que tenha só cabeçalho (planilha sem dados ainda)
+        const lines = text.split('\n').filter(l => l.trim());
+        if (lines.length < 1) { lastError = 'CSV vazio'; continue; }
+        csvText = text;
+        break;
+      } catch(e) {
+        lastError = `${e.name}: ${e.message}`;
+        console.warn('[Canais] fetch falhou:', url, e);
+      }
+    }
+
+    if (!csvText) {
+      const isFileProtocol = location.protocol === 'file:';
+      const csvUrl = `${CANAIS_PUB}?output=csv`;
+      document.getElementById('canais-content').innerHTML = `
+        <div class="canais-empty">
+          <div style="font-size:36px;opacity:.3;margin-bottom:12px">📋</div>
+          <div style="font-weight:700;margin-bottom:8px">Não foi possível carregar os dados</div>
+          ${isFileProtocol ? `
+          <div style="font-size:13px;background:#FFF3E0;border:1.5px solid #FFB74D;border-radius:8px;padding:10px 16px;max-width:460px;margin:0 auto 14px;line-height:1.7;color:#E65100;">
+            ⚠️ <strong>Arquivo aberto localmente (file://)</strong><br>
+            O navegador bloqueia requisições externas quando o arquivo é aberto direto do computador.<br>
+            <strong>Faça upload no GitHub Pages</strong> para os dados carregarem corretamente.
+          </div>` : `
+          <div style="font-size:12px;color:#D32F2F;background:#FFEBEE;padding:6px 14px;border-radius:6px;margin-bottom:12px;display:inline-block;">
+            ${lastError || 'Erro desconhecido'}
+          </div>
+          <div style="font-size:13px;color:var(--text-secondary);max-width:460px;line-height:1.7;margin:0 auto 16px;">
+            Verifique se a planilha está <strong>publicada na web como CSV</strong> e sem restrições de domínio.
+          </div>`}
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
+            <a href="${csvUrl}" target="_blank"
+               style="padding:7px 16px;background:var(--blue-light);color:var(--blue-primary);border:1.5px solid #C5D8F5;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;">
+              🔗 Testar URL no navegador
+            </a>
+            <button onclick="loadCanaisData()"
+              style="padding:7px 16px;background:var(--blue-primary);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;">
+              🔄 Tentar novamente
+            </button>
+          </div>
+          ${!isFileProtocol ? `
+          <div style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;">Ou cole a URL CSV completa:</div>
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+            <input id="canais-gid-input" type="text" placeholder="Cole a URL CSV aqui…"
+              style="padding:6px 12px;border:1.5px solid var(--gray-border);border-radius:6px;font-size:12px;width:280px;" />
+            <button onclick="tryManualGid()"
+              style="padding:6px 16px;background:#2E7D32;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;">
+              Carregar
+            </button>
+          </div>` : ''}
+        </div>`;
+      return;
+    }
+
+    parseCanaisCSV(csvText);
+
+    if (canaisRows.length === 0) {
+      document.getElementById('canais-content').innerHTML = `
+        <div class="canais-empty">
+          <div style="font-size:36px;opacity:.3;margin-bottom:12px">📭</div>
+          <div style="font-weight:700;margin-bottom:8px">Planilha conectada — sem dados ainda</div>
+          <div style="font-size:13px;color:var(--text-secondary);max-width:420px;line-height:1.7;margin:0 auto;">
+            A planilha foi lida com sucesso, mas não há contatos cadastrados ainda.<br>
+            Adicione linhas com: <strong>UF · Município · Empresa · Telefone · Email</strong>.
+          </div>
+          <button onclick="loadCanaisData()" style="margin-top:14px;padding:7px 18px;background:var(--blue-primary);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;">
+            🔄 Recarregar após adicionar dados
+          </button>
+        </div>`;
+      return;
+    }
+
+    populateCanaisUF();
+    renderCanais();
+  }
+
+  async function tryManualGid() {
+    const gid = (document.getElementById('canais-gid-input')?.value || '').trim();
+    if (!gid) return;
+    try {
+      const url = gid.startsWith('http') ? gid : `${CANAIS_PUB}?output=csv&gid=${gid}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const text = await res.text();
+      if (text.trimStart().startsWith('<')) throw new Error('Resposta inválida — verifique o gid');
+      parseCanaisCSV(text);
+      if (canaisRows.length === 0) throw new Error('Sem dados reconhecidos');
+      populateCanaisUF();
+      renderCanais();
+    } catch(e) {
+      const el = document.getElementById('canais-content');
+      if (el) el.innerHTML += `
+        <div style="color:#D32F2F;font-size:12px;font-weight:700;margin-top:8px;text-align:center;">⚠ ${e.message}</div>`;
+    }
+  }
+
+  function populateCanaisUF() {
+    const ufs = [...new Set(canaisRows.map(r => r.uf).filter(Boolean))].sort();
+    const sel = document.getElementById('canais-uf');
+    sel.innerHTML = '<option value="">🗺️ Todos os estados</option>' +
+      ufs.map(u => `<option value="${u}">${u}</option>`).join('');
+  }
+
+  function onCanaisUF() {
+    const uf = document.getElementById('canais-uf').value;
+    // Cascata: atualiza municípios
+    const munis = [...new Set(
+      canaisRows.filter(r => !uf || r.uf === uf).map(r => r.muni).filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const selM = document.getElementById('canais-muni');
+    selM.innerHTML = '<option value="">🏙️ Todos os municípios</option>' +
+      munis.map(m => `<option value="${m}">${m}</option>`).join('');
+    renderCanais();
+    updateCanaisClearBtn();
+  }
+
+  function renderCanais() {
+    const uf   = document.getElementById('canais-uf')?.value || '';
+    const muni = document.getElementById('canais-muni')?.value || '';
+    const q    = (document.getElementById('canais-search')?.value || '').toLowerCase().trim();
+    updateCanaisClearBtn();
+
+    const filtered = canaisRows.filter(r => {
+      if (uf   && r.uf   !== uf)   return false;
+      if (muni && r.muni !== muni) return false;
+      if (q && !Object.values(r).some(v => typeof v === 'string' && v.toLowerCase().includes(q))) return false;
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      document.getElementById('canais-content').innerHTML =
+        `<div class="canais-empty">
+          <div style="font-size:36px;opacity:.3;margin-bottom:12px">🔍</div>
+          <div style="font-weight:700;margin-bottom:4px">Nenhum contato encontrado</div>
+          <div style="font-size:13px">Ajuste os filtros ou o termo de busca</div>
+        </div>`;
+      return;
+    }
+
+    let html = `<div class="canais-count">${filtered.length} contato(s) encontrado(s)</div>
+      <div class="canais-grid">`;
+
+    for (const r of filtered) {
+      // Porte badge color
+      const porteNum = r.porte ? parseInt((r.porte.match(/\d+/) || [])[0] || '0') : 0;
+      const porteBg  = porteNum === 1 ? '#1565C0' : porteNum === 2 ? '#F5821F' : porteNum === 3 ? '#2E7D32' : '#607D8B';
+      const porteLabel = r.porte ? r.porte.replace(/^Porte\s*\d+\s*[-–]\s*/i, '') : '';
+
+      html += `
+        <div class="canais-card">
+          <div class="canais-card-header">
+            <div class="canais-muni">${r.muni || '—'}</div>
+            ${r.uf ? `<span class="canais-uf-badge">${r.uf}</span>` : ''}
+          </div>
+          ${r.empresa ? `<div class="canais-empresa">🏢 ${r.empresa}</div>` : ''}
+          ${r.equipe  ? `<div class="canais-row"><span class="canais-row-icon">👥</span>${r.equipe}</div>` : ''}
+          ${r.porte   ? `<div class="canais-row" style="margin-top:2px">
+            <span style="display:inline-block;background:${porteBg};color:#fff;font-size:11px;font-weight:700;
+              padding:2px 8px;border-radius:20px;">${porteNum ? `Porte ${porteNum}` : r.porte}</span>
+            ${porteLabel ? `<span style="font-size:12px;color:var(--text-secondary);margin-left:6px">${porteLabel}</span>` : ''}
+          </div>` : ''}
+          ${r.telefone ? `<div class="canais-row"><span class="canais-row-icon">📞</span>
+            <a href="tel:${r.telefone.replace(/\D/g,'')}">${r.telefone}</a></div>` : ''}
+          ${r.email    ? `<div class="canais-row"><span class="canais-row-icon">✉️</span>
+            <a href="mailto:${r.email}">${r.email}</a></div>` : ''}
+          ${r.website  ? `<div class="canais-row"><span class="canais-row-icon">🌐</span>
+            <a href="${r.website}" target="_blank" rel="noopener">${r.website.replace(/^https?:\/\/(www\.)?/,'').replace(/\/.*$/,'')}</a></div>` : ''}
+        </div>`;
+    }
+    html += '</div>';
+    document.getElementById('canais-content').innerHTML = html;
+  }
+
+  function clearCanaisFilter() {
+    document.getElementById('canais-search').value = '';
+    document.getElementById('canais-uf').value = '';
+    // Restaura todos os municípios
+    const munis = [...new Set(canaisRows.map(r => r.muni).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    document.getElementById('canais-muni').innerHTML =
+      '<option value="">🏙️ Todos os municípios</option>' +
+      munis.map(m => `<option value="${m}">${m}</option>`).join('');
+    document.getElementById('canais-muni').value = '';
+    renderCanais();
+    const btn = document.getElementById('btn-clear-canais');
+    if (btn) btn.classList.remove('visible');
+  }
+
+  function updateCanaisClearBtn() {
+    const uf   = document.getElementById('canais-uf')?.value || '';
+    const muni = document.getElementById('canais-muni')?.value || '';
+    const q    = (document.getElementById('canais-search')?.value || '').trim();
+    const btn  = document.getElementById('btn-clear-canais');
+    if (btn) btn.classList.toggle('visible', !!(uf || muni || q));
+  }
+
+  // ─── NOME DO ANALISTA ────────────────────────────────────────────────────
+  function saveAnalystName() {
+    const name = (document.getElementById('analyst-name').value || '').trim();
+    if (name) {
+      localStorage.setItem('analystName', name);
+    } else {
+      localStorage.removeItem('analystName');
+    }
+    const hint = document.getElementById('analyst-hint');
+    if (hint) {
+      hint.classList.toggle('visible', !!name);
+    }
+  }
+
+  function loadAnalystName() {
+    const name = localStorage.getItem('analystName') || '';
+    const input = document.getElementById('analyst-name');
+    if (input && name) {
+      input.value = name;
+      const hint = document.getElementById('analyst-hint');
+      if (hint) hint.classList.add('visible');
+    }
+  }
+
+  // ─── COPIAR MENSAGEM ──────────────────────────────────────────────────────
+  function copyMsg(id) {
+    let text = document.getElementById(id).innerText;
+    const analystName = (localStorage.getItem('analystName') || '').trim();
+    if (analystName) {
+      // substitui todas as variações de *Nome do analista* / *Nome do Analista*
+      text = text.replace(/\*Nome do [Aa]nalista\*/g, analystName);
+    }
+    navigator.clipboard.writeText(text).then(() => {
+      const t = document.getElementById('toast');
+      t.textContent = analystName
+        ? `📋 Mensagem copiada com o nome ${analystName}!`
+        : '📋 Mensagem copiada!';
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    });
+  }
+
+  // ─── CHIPS DE FILTRO (BOAS PRÁTICAS) ─────────────────────────────────────
+  function bpChip(word) {
+    const inp = document.getElementById('bp-search');
+    const current = inp.value.trim().toLowerCase();
+    if (current === word) {
+      inp.value = '';
+      document.querySelectorAll('#bp-filter-chips .chip').forEach(c => c.classList.remove('active'));
+      bpSearchReset();
+      updateBpClearBtn();
+    } else {
+      inp.value = word;
+      document.querySelectorAll('#bp-filter-chips .chip').forEach(c => {
+        c.classList.toggle('active', c.getAttribute('onclick') === `bpChip('${word}')`);
+      });
+      bpSearch();
+      updateBpClearBtn();
+    }
+  }
+
   // ─── INIT ─────────────────────────────────────────────────────────────────
   loadData();
+  loadAnalystName();
 </script>
 </body>
 </html>
