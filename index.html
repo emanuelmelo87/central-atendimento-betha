@@ -2504,48 +2504,68 @@ Indicar a melhoria cadastrada para evitar novo tratamento de dados.</pre>
     return cols.map(v => v.replace(/^"|"$/g,'').trim());
   }
 
-  // Separa o campo "Contatos"
-  // Suporta dois formatos:
-  //   pipe:  "(fone) | email@x.com | https://site.com"
-  //   barra: "(fone) / email@x.com / www.site.com"
+  // Separa o campo "Contatos" — suporta separador | ou ' / '
+  // Limpa prefixos como "E-mail: ", "mailto:", "Canal Direto: "
   function splitContatos(str) {
     if (!str) return { tel: '', email: '', site: '' };
-    // Se contém pipe, usa pipe como separador (preserva barras dentro dos segmentos)
-    // Senão, usa ' / ' com espaços (evita quebrar URLs com /)
     const parts = str.includes('|')
       ? str.split('|').map(p => p.trim()).filter(Boolean)
       : str.split(/\s+\/\s+/).map(p => p.trim()).filter(Boolean);
     let tel = '', email = '', site = '';
     for (const p of parts) {
       const pl = p.toLowerCase();
-      if (!email && p.includes('@'))                              { email = p; }
-      else if (!site && (pl.includes('://') || pl.startsWith('www'))) { site = p; }
-      else if (!tel)                                              { tel = p; }
+      const cleanEmail = p.replace(/^[Ee]-?[Mm]ail:\s*/,'').replace(/^mailto:/i,'').trim();
+      if (!email && (p.includes('@') || pl.startsWith('mailto:'))) {
+        email = cleanEmail;
+      } else if (!site && (pl.includes('://') || pl.startsWith('www'))) {
+        site = p;
+      } else if (!tel) {
+        tel = p.replace(/^Canal\s+Direto:\s*/i,'').trim();
+      }
     }
     return { tel, email, site };
   }
 
-  // Colunas fixas do canais.csv:
-  // 0: Área comercial | 1: Municipio | 2: Estado | 3: UF do estado
-  // 4: Equipe comercial | 5: Porte | 6: Contatos
-  function parseCanaisCSV(text) {
-    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-    if (lines.length < 2) { canaisRows = []; return; }
+  // Parser CSV completo: suporta campos quoted com quebras de linha internas
+  function parseCSVText(csvText) {
+    const rows = [];
+    let row = [], field = '', inQuote = false;
+    for (let i = 0; i < csvText.length; i++) {
+      const c = csvText[i], next = csvText[i + 1];
+      if (inQuote) {
+        if (c === '"' && next === '"') { field += '"'; i++; }
+        else if (c === '"') { inQuote = false; }
+        else { field += c; }
+      } else {
+        if (c === '"') { inQuote = true; }
+        else if (c === ',') { row.push(field.trim()); field = ''; }
+        else if (c === '\n') {
+          row.push(field.trim()); field = '';
+          if (row.some(f => f)) rows.push(row);
+          row = [];
+        } else if (c !== '\r') { field += c; }
+      }
+    }
+    if (field || row.length) { row.push(field.trim()); if (row.some(f => f)) rows.push(row); }
+    return rows;
+  }
 
+  // Colunas do canais.csv (formato sem duplicatas):
+  // 0: Municipio | 1: Estado | 2: UF do estado | 3: Equipe comercial | 4: Contatos
+  function parseCanaisCSV(text) {
+    const rows = parseCSVText(text);
+    if (rows.length < 2) { canaisRows = []; return; }
     canaisRows = [];
-    for (let i = 1; i < lines.length; i++) {          // pula cabeçalho
-      const cols = lines[i].split(',');
-      if (cols.length < 4) continue;
-      const empresa  = cols[0].trim();
-      const muni     = cols[1].trim();
-      const estado   = cols[2].trim();
-      const uf       = cols[3].trim();
-      const equipe   = (cols[4] || '').trim();
-      const porte    = (cols[5] || '').trim();
-      const contatos = cols.slice(6).join(',').trim();  // une colunas restantes por segurança
-      if (!empresa && !muni && !uf) continue;
+    for (let i = 1; i < rows.length; i++) {
+      const cols = rows[i];
+      const muni     = (cols[0] || '').trim();
+      const estado   = (cols[1] || '').trim();
+      const uf       = (cols[2] || '').trim();
+      const equipe   = (cols[3] || '').trim();
+      const contatos = (cols[4] || '').trim();
+      if (!muni || !uf) continue; // ignora linhas sem município (dados incompletos)
       const { tel, email, site } = splitContatos(contatos);
-      canaisRows.push({ empresa, muni, estado, uf, equipe, porte, telefone: tel, email, website: site });
+      canaisRows.push({ muni, estado, uf, equipe, telefone: tel, email, website: site });
     }
     canaisRows.sort((a, b) => (a.uf + a.muni).localeCompare(b.uf + b.muni, 'pt-BR'));
   }
@@ -2695,24 +2715,14 @@ Indicar a melhoria cadastrada para evitar novo tratamento de dados.</pre>
       <div class="canais-grid">`;
 
     for (const r of filtered) {
-      // Porte badge color
-      const porteNum = r.porte ? parseInt((r.porte.match(/\d+/) || [])[0] || '0') : 0;
-      const porteBg  = porteNum === 1 ? '#1565C0' : porteNum === 2 ? '#F5821F' : porteNum === 3 ? '#2E7D32' : '#607D8B';
-      const porteLabel = r.porte ? r.porte.replace(/^Porte\s*\d+\s*[-–]\s*/i, '') : '';
-
       html += `
         <div class="canais-card">
           <div class="canais-card-header">
             <div class="canais-muni">${r.muni || '—'}</div>
             ${r.uf ? `<span class="canais-uf-badge">${r.uf}</span>` : ''}
           </div>
-          ${r.empresa ? `<div class="canais-empresa">🏢 ${r.empresa}</div>` : ''}
-          ${r.equipe  ? `<div class="canais-row"><span class="canais-row-icon">👥</span>${r.equipe}</div>` : ''}
-          ${r.porte   ? `<div class="canais-row" style="margin-top:2px">
-            <span style="display:inline-block;background:${porteBg};color:#fff;font-size:11px;font-weight:700;
-              padding:2px 8px;border-radius:20px;">${porteNum ? `Porte ${porteNum}` : r.porte}</span>
-            ${porteLabel ? `<span style="font-size:12px;color:var(--text-secondary);margin-left:6px">${porteLabel}</span>` : ''}
-          </div>` : ''}
+          ${r.estado  ? `<div style="font-size:11px;color:var(--text-secondary);margin-bottom:2px">${r.estado}</div>` : ''}
+          ${r.equipe  ? `<div class="canais-empresa">👥 ${r.equipe}</div>` : ''}
           ${r.telefone ? `<div class="canais-row"><span class="canais-row-icon">📞</span>
             <a href="tel:${r.telefone.replace(/\D/g,'')}">${r.telefone}</a></div>` : ''}
           ${r.email    ? `<div class="canais-row"><span class="canais-row-icon">✉️</span>
